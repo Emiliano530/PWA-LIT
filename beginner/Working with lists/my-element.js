@@ -1,6 +1,5 @@
 import {LitElement, html} from 'lit';
-import {map} from 'lit/directives/map.js';
-// TODO: import repeat directive.
+import {repeat} from 'lit/directives/repeat.js';
 
 class MyElement extends LitElement {
   static properties = {
@@ -23,9 +22,9 @@ class MyElement extends LitElement {
       <button @click=${() => this._sort(1)}>Sort ascending</button>
       <button @click=${() => this._sort(-1)}>Sort descending</button>
       <ul>
-        <!-- TODO: Replace below using repeat directive. -->
-        ${map(
+        ${repeat(
           this.tasks,
+          (task) => task.id,
           (task) => html`
             <li>
               <label><input type="checkbox" />${task.id}) ${task.label}</label>
