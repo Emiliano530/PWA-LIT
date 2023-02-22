@@ -7,7 +7,7 @@ export class MyElement extends LitElement {
 
   constructor() {
     super();
-    this.version = 'STARTING';
+    this.version = 'COMPLETED';
   }
 
   render() {
