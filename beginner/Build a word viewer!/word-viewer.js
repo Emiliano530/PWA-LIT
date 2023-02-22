@@ -12,13 +12,27 @@ class WordViewer extends LitElement {
     this.words = 'initial value';
   }
 
-  // TODO: Define a `connectedCallback` which sets an interval.
-  // TODO: Define a `disconnectedCallback` which clears the interval.
+  intervalTimer;
+
+  connectedCallback() {
+    super.connectedCallback();
+    this.intervalTimer = setInterval(this.tickToNextWord, 1000);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    clearInterval(this.intervalTimer);
+    this.intervalTimer = undefined;
+  }
 
   render() {
     const splitWords = this.words.split('.');
     const word = splitWords[this.idx % splitWords.length];
     return html`<pre>${word}</pre>`;
   }
+
+  tickToNextWord = () => {
+    this.idx += 1;
+  };
 }
 customElements.define('word-viewer', WordViewer);
