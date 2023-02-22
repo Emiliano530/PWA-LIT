@@ -4,14 +4,18 @@ export class ToDoList extends LitElement {
   static properties = {
     _listItems: {state: true},
   };
-
-  // TODO: Add styles here
+  static styles = css`
+    .completed {
+      text-decoration-line: line-through;
+      color: #777;
+    }
+  `;
 
   constructor() {
     super();
     this._listItems = [
       {text: 'Make to-do list', completed: true},
-      {text: 'Add some styles', completed: false},
+      {text: 'Add some styles', completed: true},
     ];
   }
 
@@ -22,7 +26,7 @@ export class ToDoList extends LitElement {
         ${this._listItems.map(
           (item) => html`
             <li
-                class="TODO"
+                class=${item.completed ? 'completed' : ''}
                 @click=${() => this.toggleCompleted(item)}>
               ${item.text}
             </li>`
@@ -43,8 +47,10 @@ export class ToDoList extends LitElement {
   }
 
   addToDo() {
-    this._listItems = [...this._listItems,
-        {text: this.input.value, completed: false}];
+    this._listItems = [
+      ...this._listItems,
+      {text: this.input.value, completed: false},
+    ];
     this.input.value = '';
   }
 }
