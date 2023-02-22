@@ -20,7 +20,14 @@ class MyElement extends LitElement {
 
   render() {
     const listItems = [];
-    // TODO: populate templates with items to render.
+    this.friends.forEach((friend) => {
+      listItems.push(html`<li>${friend}</li>`);
+    });
+    if (this.includePets) {
+      this.pets.forEach((pet) => {
+        listItems.push(html`<li>${pet.name} (${pet.species})</li>`);
+      });
+    }
 
     return html`
       <button @click=${() => this._togglePetVisibility()}>
@@ -28,7 +35,7 @@ class MyElement extends LitElement {
       </button>
       <p>My magical friends</p>
       <ul>
-        <!-- TODO: Render templates. -->
+        ${listItems}
       </ul>
     `;
   }
