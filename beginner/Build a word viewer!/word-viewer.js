@@ -1,8 +1,14 @@
-import { html, LitElement } from 'lit';
-
+import {html, LitElement} from 'lit';
 
 class WordViewer extends LitElement {
-  // TODO: Declare a reactive property `words`.
+  static properties = {
+    words: {},
+  };
+
+  constructor() {
+    super();
+    this.words = 'initial value';
+  }
 
   render() {
     return html`<pre>${this.words}</pre>`;
