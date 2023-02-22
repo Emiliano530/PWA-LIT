@@ -3,6 +3,7 @@ import {LitElement, html, css} from 'lit';
 export class ToDoList extends LitElement {
   static properties = {
     _listItems: {state: true},
+    hideCompleted: {},
   };
   static styles = css`
     .completed {
@@ -15,15 +16,17 @@ export class ToDoList extends LitElement {
     super();
     this._listItems = [
       {text: 'Make to-do list', completed: true},
-      {text: 'Add some styles', completed: true},
+      {text: 'Complete Lit tutorial', completed: false},
     ];
+    this.hideCompleted = false;
   }
 
   render() {
-    return html`
-      <h2>To Do</h2>
+    // TODO: Replace items definition.
+    const items = this._listItems;
+    const todos = html`
       <ul>
-        ${this._listItems.map(
+        ${items.map(
           (item) => html`
             <li
                 class=${item.completed ? 'completed' : ''}
@@ -32,14 +35,33 @@ export class ToDoList extends LitElement {
             </li>`
         )}
       </ul>
+    `;
+    // TODO: Define partial templates.
+    return html`
+      <h2>To Do</h2>
+      <!-- TODO: Update expression. -->
+      ${todos}
       <input id="newitem" aria-label="New item">
       <button @click=${this.addToDo}>Add</button>
+      <br>
+      <label>
+        <input type="checkbox"
+          @change=${this.setHideCompleted}
+          ?checked=${this.hideCompleted}>
+        Hide completed
+      </label>
+
+
     `;
   }
 
   toggleCompleted(item) {
     item.completed = !item.completed;
     this.requestUpdate();
+  }
+
+  setHideCompleted(e) {
+    this.hideCompleted = e.target.checked;
   }
 
   get input() {
