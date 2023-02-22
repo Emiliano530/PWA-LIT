@@ -1,5 +1,6 @@
 import {html, css, LitElement} from 'lit';
-// TODO: Import directives
+import {range} from 'lit/directives/range.js';
+import {map} from 'lit/directives/map.js';
 
 class MyElement extends LitElement {
   static styles = css`
@@ -36,7 +37,14 @@ class MyElement extends LitElement {
     return html`
       <p>Let's play a game!</p>
       <div id="board">
-        <!-- TODO: Place squares here. -->
+        ${map(range(8), (row) =>
+          map(
+            range(8),
+            (col) => html`
+          <div class="${getColor(row, col)}">${getLabel(row, col)}</div>
+        `
+          )
+        )}
       </div>
     `;
   }
