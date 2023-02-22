@@ -2,19 +2,20 @@ import {html, LitElement} from 'lit';
 
 class WordViewer extends LitElement {
   static properties = {
+    idx: {state: true},
     words: {},
   };
 
   constructor() {
     super();
-    // TODO: Add `idx` state
+    this.idx = 0;
     this.words = 'initial value';
   }
 
   render() {
-    // TODO: Split the `words` by `'.'`, and from the resulting word array
-    // only show the word on index `this.idx`.
-    return html`<pre>${this.words}</pre>`;
+    const splitWords = this.words.split('.');
+    const word = splitWords[this.idx % splitWords.length];
+    return html`<pre>${word}</pre>`;
   }
 }
 customElements.define('word-viewer', WordViewer);
