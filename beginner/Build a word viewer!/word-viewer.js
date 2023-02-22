@@ -5,7 +5,17 @@ class WordViewer extends LitElement {
     idx: {state: true},
     words: {},
   };
-  // TODO: Add `static styles` using the `css` tag function.
+  static styles = css`
+    :host {
+      background-color: white;
+      color: violet;
+      cursor: pointer;
+      display: block;
+    }
+    pre {
+      padding: 0.2em;
+    }
+  `;
 
   constructor() {
     super();
