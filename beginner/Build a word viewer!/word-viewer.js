@@ -1,10 +1,11 @@
-import {html, LitElement} from 'lit';
+import {css, html, LitElement} from 'lit';
 
 class WordViewer extends LitElement {
   static properties = {
     idx: {state: true},
     words: {},
   };
+  // TODO: Add `static styles` using the `css` tag function.
 
   constructor() {
     super();
