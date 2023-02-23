@@ -12,6 +12,16 @@ export class MyElement extends LitElement {
     this.backward = '';
   }
 
+  willUpdate(changedProperties) {
+    if (changedProperties.has('forward')) {
+      this.backward = this.forward.split('').reverse().join('');
+    }
+
+    if (changedProperties.has('backward')) {
+      this.forward = this.backward.split('').reverse().join('');
+    }
+  }
+
   onInput(e) {
     const inputEl = e.target;
     if (inputEl.id === 'forward') {
