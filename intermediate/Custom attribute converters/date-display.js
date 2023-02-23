@@ -1,9 +1,8 @@
 import {LitElement, html} from 'lit';
-import {dateConverter} from './date-converter.js';
 
 export class DateDisplay extends LitElement {
   static properties = {
-    date: {converter: dateConverter},
+    date: {attribute: false},
   };
 
   constructor() {
