@@ -34,5 +34,22 @@ export class MyElement extends LitElement {
       </div>
     `;
   }
+
+  updated(changedProperties) {
+    if (changedProperties.has('_showMessage')) {
+      const final = this._message.getBoundingClientRect().width;
+      const starting = 0 - final;
+      this._message.animate(
+        [
+          {transform: `translateX(${starting}px)`},
+          {transform: `translateX(0)`},
+        ],
+        {
+          duration: 500,
+          easing: 'ease-out',
+        }
+      );
+    }
+  }
 }
 customElements.define('my-element', MyElement);
