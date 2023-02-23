@@ -1,9 +1,6 @@
 import {LitElement, html} from 'lit';
 
 export class MyElement extends LitElement {
-  static properties = {
-    result: {},
-  };
 
   constructor() {
     super();
