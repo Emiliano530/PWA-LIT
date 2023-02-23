@@ -3,11 +3,13 @@ import {LitElement, html} from 'lit';
 export class DateDisplay extends LitElement {
   static properties = {
     date: {attribute: false},
+    dateStr: {type: String, attribute: 'date-str'},
   };
 
   constructor() {
     super();
     this.date = new Date();
+    this.dateStr = '';
   }
 
   render() {
