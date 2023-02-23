@@ -13,7 +13,7 @@ export class MyElement extends LitElement {
 
   removeItem(item) {
     const indexToRemove = this.groceries.indexOf(item);
-    this.groceries.splice(indexToRemove, 1);
+    this.groceries = this.groceries.filter((_, i) => i !== indexToRemove);
   }
 
   render() {
@@ -22,7 +22,7 @@ export class MyElement extends LitElement {
         this.groceries,
         (item) =>
           html`<button @click=${() =>
-            this.removeItem(item)}>x</button> ${item}<br>`
+            this.removeItem(item)}>x</button>  ${item}<br>`
       )}
     `;
   }
