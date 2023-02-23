@@ -33,6 +33,10 @@ export class MyElement extends LitElement {
     this.duration = Number.parseInt(v);
   }
 
+  shouldUpdate(changedProperties) {
+    return !(changedProperties.size === 1 && changedProperties.has('duration'));
+  }
+
   render() {
     this._renderCount++;
     const keyframeOptions = {duration: this.duration};
